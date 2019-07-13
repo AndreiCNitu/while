@@ -1,6 +1,6 @@
 # While
 
-Compiler implementing the denotational semantics of the **While** language expressions, as defined in Chapter 4 of the book *Semantics With Applications: A Formal Introduction*.
+Interpreter implementing the denotational semantics of the **While** language, as defined in Chapter 4 of the book *Semantics With Applications: A Formal Introduction*.
 
 ### Usage
 
@@ -9,7 +9,7 @@ Start by running
 ghci while.hs
 ```
 
-Parse a program, given as a string)
+Parse a program, given as a string
 ```haskell
 parse <parser> <program>
 -- returns all possible parses as a list of (String, Stm) tuples
@@ -29,4 +29,6 @@ Only single letters ('a' - 'z') can be used as variable names.
 
 ### Examples
 
-![](demo.gif)
+<p float="left">
+  <img src="https://imgur.com/GJ9b9Ng.gif" width="700" />
+</p>
