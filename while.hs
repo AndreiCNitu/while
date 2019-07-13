@@ -36,9 +36,11 @@ cond (b, c, d) x
     | b x == True = c x
     | otherwise   = d x
 
+-- Fix point
 fix :: ((State -> State) -> (State->State)) -> (State -> State)
 fix ff = ff (fix ff)
 
+-- Denotational semantics
 s_ds :: Stm -> State -> State
 s_ds Skip             s = s
 s_ds (Ass x a)        s = update s (a_val a s) x
@@ -60,5 +62,17 @@ eval :: String -> [Z]
 eval pr = map (s_ds (snd (parse stms pr !! 0)) initialState) vars
 
 -- Get value of a variable
-val :: Char -> [Z] -> Z
-val var result = result !! (fromMaybe 0 (findIndex (==var) ['a' .. 'z']))
+value :: Char -> [Z] -> Z
+value var result = result !! (fromMaybe 0 (findIndex (==var) ['a' .. 'z']))
+
+------------------------------- Example inputs --------------------------------
+
+-- Factorial (x!)
+example1 = "x:=5; y:=1; while !x=1 do (y:=y*x; x:=x-1)"
+
+-- The assignment <u:=2*3+4> is a statment after the conditional.
+example2 = "if true then x:=5 else z:=2+1; u:=2*3+4"
+
+-- If multiple statements are desired within the statements of the if clause,
+-- then explicit parentheses are required:
+example3 = "if true then (x:=5; z:=3) else (z:=2+1; v:=3+4); u:=2"
