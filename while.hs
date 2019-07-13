@@ -67,7 +67,7 @@ value var result = result !! (fromMaybe 0 (findIndex (==var) ['a' .. 'z']))
 
 ------------------------------- Example inputs --------------------------------
 
--- Factorial (x!)
+-- Factorial (y=x!)
 example1 = "x:=5; y:=1; while !x=1 do (y:=y*x; x:=x-1)"
 
 -- The assignment <u:=2*3+4> is a statment after the conditional.
